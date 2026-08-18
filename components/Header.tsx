@@ -35,10 +35,12 @@ export default function Header() {
           <span aria-hidden />
         </nav>
 
-        <PixelImg
-          src="/game/balloon.png"
-          className="sprite-float-balloon absolute right-10 top-14 z-20 hidden h-[220px] w-auto sm:block md:right-14 md:top-16 md:h-[280px] lg:right-16 lg:h-[340px]"
-        />
+        {pathname === "/" && (
+          <PixelImg
+            src="/game/balloon.png"
+            className="sprite-float-balloon absolute right-10 top-14 z-20 hidden h-[220px] w-auto sm:block md:right-14 md:top-16 md:h-[280px] lg:right-16 lg:h-[340px]"
+          />
+        )}
       </div>
     </header>
   );
