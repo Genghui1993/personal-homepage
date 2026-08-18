@@ -5,19 +5,19 @@ import { profile, type Task } from "@/data/profile";
 
 const statusStyles = {
   completed: {
-    dot: "bg-premium-emerald",
+    dot: "bg-[#8fd14f]",
     label: "已完成",
-    opacity: "opacity-60",
+    opacity: "opacity-70",
   },
   "in-progress": {
-    dot: "bg-premium-accent",
+    dot: "bg-[#ff9f43]",
     label: "进行中",
     opacity: "opacity-100",
   },
   future: {
-    dot: "bg-premium-border",
+    dot: "bg-[#c5cdd4]",
     label: "未来",
-    opacity: "opacity-40",
+    opacity: "opacity-60",
   },
 };
 
@@ -26,7 +26,7 @@ function TaskItem({ task }: { task: Task }) {
 
   return (
     <div
-      className={`group flex items-center gap-4 rounded-xl border border-white/10 px-5 py-4 transition-colors hover:border-white/25 hover:bg-white/5 ${style.opacity}`}
+      className={`group flex items-center gap-4 rounded-2xl bg-white px-5 py-4 shadow-[0_6px_0_#e0b84a] ${style.opacity}`}
     >
       <span className={`h-2 w-2 shrink-0 rounded-full ${style.dot}`} />
       <span className="flex-1 text-sm text-premium-ink">{task.title}</span>
@@ -54,7 +54,7 @@ export default function TaskList() {
       <div className="mb-10 flex items-end justify-between">
         <div>
           <p className="section-label">Quest Log</p>
-          <h2 className="mt-2 font-serif text-3xl text-premium-ink sm:text-4xl">
+          <h2 className="mt-2 text-3xl font-extrabold text-premium-ink sm:text-4xl">
             当前任务
           </h2>
         </div>

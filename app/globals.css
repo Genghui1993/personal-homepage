@@ -12,25 +12,174 @@
   }
 
   ::selection {
-    background: rgba(244, 241, 234, 0.2);
-    color: #f4f1ea;
+    background: #f5d56c;
+    color: #0b3a6a;
   }
 }
 
 @layer components {
   .section-label {
-    @apply text-xs font-medium uppercase tracking-[0.22em] text-white/40;
+    @apply text-xs font-extrabold uppercase tracking-[0.2em] text-white/70;
+  }
+
+  .game-card {
+    @apply rounded-[20px] bg-white text-[#222];
+    box-shadow: 0 10px 28px rgba(11, 58, 106, 0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(11, 58, 106, 0.2);
   }
 
   .premium-card {
-    @apply rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:bg-white/[0.06];
+    @apply game-card;
   }
 
   .stat-bar {
-    @apply relative h-1.5 overflow-hidden rounded-full bg-white/10;
+    @apply relative h-2.5 overflow-hidden rounded-full bg-[#e9eef2];
   }
 
-  .nav-pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-white/50 px-5 py-1.5 text-[13px] text-white/90 transition-colors hover:border-white hover:bg-white/5;
+  .ghost-btn {
+    @apply inline-flex items-center justify-center rounded-md border-2 border-white px-6 py-2 text-sm font-extrabold tracking-wide text-white transition-colors hover:bg-white hover:text-[#0b3a6a];
+  }
+
+  .navy-btn {
+    @apply inline-flex w-full items-center justify-center rounded-xl bg-[#0b3a6a] px-5 py-3 text-sm font-extrabold text-white transition-transform hover:scale-[1.01];
+  }
+
+  .game-dirt {
+    background-color: #8b5a2b;
+    background-image: repeating-linear-gradient(
+      -32deg,
+      #8b5a2b 0 16px,
+      #c4a06a 16px 20px,
+      #8b5a2b 20px 36px
+    );
+  }
+
+  .pixel-art {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  .glass-nav {
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 0 10px 30px rgba(11, 58, 106, 0.12);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
   }
 }
+
+@keyframes cloud-drift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(16px);
+  }
+}
+
+@keyframes sprite-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.sprite-float {
+  animation: sprite-float 5s ease-in-out infinite;
+}
+
+.sprite-float-balloon {
+  animation: sprite-float 5.2s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+
+.hero-mark {
+  position: relative;
+  padding: 0.12em 0.28em 0.16em;
+  color: #0b3a6a;
+  border-radius: 16px;
+  background: #f5d56c;
+  box-shadow: 4px 5px 0 #0b3a6a;
+  transform-origin: left center;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s ease,
+    box-shadow 0.35s ease,
+    color 0.35s ease;
+}
+
+.hero-mark:hover {
+  color: #0b3a6a;
+  background: #fff4c4;
+  box-shadow: 7px 9px 0 #0b3a6a;
+  transform: translateY(-4px) rotate(-1.5deg);
+}
+
+.hero-kicker {
+  display: block;
+  width: fit-content;
+  margin-bottom: 0.45em;
+  font-family: var(--font-display), var(--font-cn), sans-serif;
+  font-size: 0.46em;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  color: #fff;
+  text-shadow: 3px 3px 0 #0b3a6a;
+  transform: rotate(-6deg);
+  transform-origin: left center;
+}
+
+.hero-tagline {
+  margin-top: 1.35rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 0 rgba(11, 58, 106, 0.2);
+}
+
+.hero-tagline span {
+  display: inline-block;
+  padding: 0 0.18em;
+  color: #0b3a6a;
+  border-radius: 6px;
+  background: #f5d56c;
+  box-shadow: 2px 2px 0 #0b3a6a;
+  transform: rotate(-2deg);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hero-tagline:hover span {
+  background: #fff4c4;
+  box-shadow: 3px 4px 0 #0b3a6a;
+  transform: translateY(-2px) rotate(-3deg);
+}
+
+@media (min-width: 640px) {
+  .hero-tagline {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-mark,
+  .hero-kicker {
+    transform-origin: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+

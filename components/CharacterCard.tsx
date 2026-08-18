@@ -16,7 +16,7 @@ export default function CharacterCard() {
       transition={{ duration: 0.6 }}
     >
       <p className="section-label">Character</p>
-      <h2 className="mt-2 font-serif text-3xl text-premium-ink">角色档案</h2>
+      <h2 className="mt-2 text-3xl font-extrabold text-premium-ink">角色档案</h2>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2">
         <StatItem label="姓名" value={profile.name} />
@@ -26,13 +26,13 @@ export default function CharacterCard() {
       </div>
 
       {/* Level ring */}
-      <div className="mt-8 flex items-center gap-6 rounded-xl bg-white/[0.04] p-6">
+      <div className="mt-8 flex items-center gap-6 rounded-2xl bg-[#eef7fb] p-6">
         <div className="relative flex h-20 w-20 shrink-0 items-center justify-center">
           <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 80 80">
-            <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(244,241,234,0.15)" strokeWidth="3" />
+            <circle cx="40" cy="40" r="34" fill="none" stroke="#d7e6ee" strokeWidth="6" />
             <motion.circle
               cx="40" cy="40" r="34"
-              fill="none" stroke="url(#xpGrad)" strokeWidth="3"
+              fill="none" stroke="#8fd14f" strokeWidth="6"
               strokeLinecap="round"
               strokeDasharray={`${xpProgress * 2.136} 213.6`}
               initial={{ strokeDasharray: "0 213.6" }}
@@ -40,14 +40,8 @@ export default function CharacterCard() {
               viewport={{ once: true }}
               transition={{ duration: 1.2, delay: 0.3 }}
             />
-            <defs>
-              <linearGradient id="xpGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#f4f1ea" />
-                <stop offset="100%" stopColor="#c4b5fd" />
-              </linearGradient>
-            </defs>
           </svg>
-          <span className="font-serif text-2xl text-premium-ink">
+          <span className="text-2xl font-extrabold text-premium-ink">
             {String(profile.level).padStart(2, "0")}
           </span>
         </div>
@@ -61,7 +55,7 @@ export default function CharacterCard() {
           </div>
           <div className="stat-bar mt-3">
             <motion.div
-              className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-premium-accent to-premium-violet"
+              className="absolute inset-y-0 left-0 rounded-full bg-[#8fd14f]"
               initial={{ width: 0 }}
               whileInView={{ width: `${xpProgress}%` }}
               viewport={{ once: true }}
@@ -89,7 +83,7 @@ function StatItem({
   return (
     <div>
       <p className="text-xs text-premium-subtle">{label}</p>
-      <p className={`mt-1 text-lg font-medium ${accent ? "gradient-text" : "text-premium-ink"}`}>
+      <p className={`mt-1 text-lg font-extrabold ${accent ? "text-[#ff9f43]" : "text-premium-ink"}`}>
         {value}
       </p>
     </div>

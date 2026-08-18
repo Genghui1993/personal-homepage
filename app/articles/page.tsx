@@ -4,35 +4,23 @@ import { fetchWechatArticles, mergeArticles } from "@/lib/wechat-rss";
 
 async function getArticles() {
   let rssArticles: Awaited<ReturnType<typeof fetchWechatArticles>> = [];
-  let fromRss = false;
   const rssUrl = wechatConfig.rssFeedUrl;
-
-  const canFetchRemote = Boolean(rssUrl) && (isPublicRssUrl(rssUrl) || process.env.NODE_ENV !== "production");
+  const canFetchRemote =
+    Boolean(rssUrl) && (isPublicRssUrl(rssUrl) || process.env.NODE_ENV !== "production");
 
   if (canFetchRemote && rssUrl) {
     try {
       rssArticles = await fetchWechatArticles(rssUrl);
-      fromRss = rssArticles.length > 0;
-    } catch (e) {
-      console.warn("[articles] RSS fetch failed, using snapshot:", e);
+    } catch (error) {
+      console.warn("[articles] RSS fetch failed, using snapshot:", error);
     }
   }
 
-  return {
-    articles: mergeArticles(rssArticles, manualArticles),
-    fromRss,
-  };
+  return mergeArticles(rssArticles, manualArticles);
 }
 
 export default async function ArticlesPage() {
-  const { articles, fromRss } = await getArticles();
+  const articles = await getArticles();
 
-  return (
-    <ArticleList
-      articles={articles}
-      accountName={wechatConfig.accountName}
-      accountBio={wechatConfig.accountBio}
-      fromRss={fromRss}
-    />
-  );
+  return <ArticleList articles={articles} accountBio={wechatConfig.accountBio} />;
 }

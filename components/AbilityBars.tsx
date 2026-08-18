@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { profile, type Ability } from "@/data/profile";
 
 const colorMap: Record<Ability["color"], string> = {
-  cyan: "from-blue-400 to-cyan-400",
-  purple: "from-indigo-500 to-violet-500",
-  pink: "from-violet-500 to-purple-500",
-  amber: "from-amber-400 to-orange-400",
+  cyan: "bg-[#4ec6f2]",
+  purple: "bg-[#ff7eb3]",
+  pink: "bg-[#ff9f43]",
+  amber: "bg-[#f5d56c]",
 };
 
 function AbilityBar({ ability, index }: { ability: Ability; index: number }) {
@@ -28,7 +28,7 @@ function AbilityBar({ ability, index }: { ability: Ability; index: number }) {
       </div>
       <div className="stat-bar">
         <motion.div
-          className={`absolute inset-y-0 left-0 rounded-full bg-gradient-to-r ${colorMap[ability.color]}`}
+          className={`absolute inset-y-0 left-0 rounded-full ${colorMap[ability.color]}`}
           initial={{ width: 0 }}
           whileInView={{ width: `${percentage}%` }}
           viewport={{ once: true }}
@@ -49,7 +49,7 @@ export default function AbilityBars() {
       transition={{ duration: 0.6, delay: 0.1 }}
     >
       <p className="section-label">Attributes</p>
-      <h2 className="mt-2 font-serif text-3xl text-premium-ink">能力属性</h2>
+      <h2 className="mt-2 text-3xl font-extrabold text-premium-ink">能力属性</h2>
 
       <div className="mt-8 space-y-6">
         {profile.abilities.map((ability, index) => (

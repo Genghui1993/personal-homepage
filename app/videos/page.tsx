@@ -4,47 +4,46 @@ import { motion } from "framer-motion";
 import { videos } from "@/data/videos";
 
 export default function VideosPage() {
-  return (
-    <div className="mx-auto max-w-6xl px-6 pt-32 pb-20 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <p className="section-label">Videos</p>
-        <h1 className="mt-2 font-serif text-4xl text-premium-ink sm:text-5xl">视频</h1>
-        <p className="mt-4 max-w-lg text-sm leading-relaxed text-premium-muted">
-          AI 相关的创作与分享。
-        </p>
-      </motion.div>
+  const [featured, ...rest] = videos;
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {videos.map((video, index) => (
-          <motion.div
-            key={video.id}
-            className="premium-card group overflow-hidden"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 + index * 0.08 }}
-          >
-            <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-premium-accent/10 via-premium-violet/10 to-premium-rose/5">
-              <span className="text-3xl text-premium-subtle">▶</span>
-            </div>
-            <div className="p-5">
-              <h2 className="font-medium text-premium-ink transition-colors group-hover:text-premium-accent">
-                {video.title}
-              </h2>
-              <div className="mt-3 flex items-center gap-3 text-xs text-premium-subtle">
-                <span>{video.duration}</span>
-                <span>·</span>
-                <span>{video.views} 播放</span>
-                <span>·</span>
-                <span>{video.platform}</span>
+  return (
+    <div className="mx-auto flex min-h-[calc(100svh-120px)] max-w-4xl items-center px-6 pt-24 pb-32">
+      <motion.div
+        className="game-card w-full p-5 sm:p-7"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-[16px] bg-[#58b8f6]">
+          <div className="absolute inset-x-0 bottom-0 h-20 rounded-t-[999px] bg-[#7ecf3c]" />
+          <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-[#0b3a6a] text-white">
+            ▶
+          </span>
+          <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 bg-black/70 px-4 py-2 text-xs font-bold text-white">
+            <span>PLAY</span>
+            <span className="opacity-70">{featured?.duration ?? "00:00"}</span>
+            <span className="ml-auto opacity-70">{featured?.platform}</span>
+          </div>
+        </div>
+        <h1 className="mt-4 text-xl font-extrabold text-[#222] sm:text-2xl">
+          {featured?.title ?? "视频"}
+        </h1>
+
+        {rest.length > 0 && (
+          <div className="mt-6 grid gap-5 sm:grid-cols-2">
+            {rest.map((video) => (
+              <div key={video.id} className="flex gap-3">
+                <span className="mt-1 h-10 w-1 shrink-0 rounded-full bg-[#0b3a6a]" />
+                <div>
+                  <h2 className="font-extrabold text-[#222]">{video.title}</h2>
+                  <p className="mt-1 text-xs text-[#888]">
+                    {video.duration} · {video.views} 播放
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+            ))}
+          </div>
+        )}
+      </motion.div>
     </div>
   );
 }
