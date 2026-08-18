@@ -11,7 +11,8 @@
     "dev:webpack": "next dev -H 127.0.0.1 -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync:articles": "node scripts/sync-articles.js"
   },
   "dependencies": {
     "framer-motion": "^11.15.0",
