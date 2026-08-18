@@ -1,0 +1,26 @@
+# WeWe RSS - 微信公众号 RSS 服务
+# 文档: https://github.com/cooderl/wewe-rss
+#
+# 启动: docker compose -f docker-compose.wewe-rss.yml up -d
+# 管理: http://localhost:4000
+# 停止: docker compose -f docker-compose.wewe-rss.yml down
+
+name: wewe-rss
+
+services:
+  wewe-rss:
+    image: cooderl/wewe-rss-sqlite:latest
+    container_name: wewe-rss
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      DATABASE_TYPE: sqlite
+      AUTH_CODE: ai-space-2026
+      SERVER_ORIGIN_URL: http://127.0.0.1:4000
+      CRON_EXPRESSION: "35 5,17 * * *"
+    volumes:
+      - wewe-rss-data:/app/data
+
+volumes:
+  wewe-rss-data:
