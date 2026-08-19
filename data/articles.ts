@@ -25,6 +25,22 @@ export const wechatConfig = {
  */
 export const manualArticles: Article[] = [
   {
+    "id": "https://mp.weixin.qq.com/s/734tZrVGSs7A4yd7_sVxFA",
+    "title": "AI开始自己上班了：为什么未来最危险的，不是不会用AI的人，而是不会管理AI的人？",
+    "excerpt": "AI开始自己上班了：为什么未来最危险的，不是不会用AI的人，而是不会管理AI的人？",
+    "date": "2026-08-19",
+    "url": "https://mp.weixin.qq.com/s/734tZrVGSs7A4yd7_sVxFA",
+    "coverImage": "https://mmbiz.qpic.cn/mmbiz_jpg/zPFaQNDYze4ZPVDKr85gOhpSt3OJ98z7hANRG33hsVoiaibvkJWVPDBSoTLjD5Sy1KklTCNs7XGyWiblnakYdgkFEa8ibvGAnwibia4lOHEvuyzOA/0?wx_fmt=jpeg"
+  },
+  {
+    "id": "https://mp.weixin.qq.com/s/n5vDmXAMaOEY7unvJrycKQ",
+    "title": "想学AI的人越来越多，但真正学会的人为什么这么少？",
+    "excerpt": "想学AI的人越来越多，但真正学会的人为什么这么少？",
+    "date": "2026-08-18",
+    "url": "https://mp.weixin.qq.com/s/n5vDmXAMaOEY7unvJrycKQ",
+    "coverImage": "https://mmbiz.qpic.cn/mmbiz_jpg/zPFaQNDYze4ZPVDKr85gOhpSt3OJ98z7hANRG33hsVoiaibvkJWVPDBSoTLjD5Sy1KklTCNs7XGyWiblnakYdgkFEa8ibvGAnwibia4lOHEvuyzOA/0?wx_fmt=jpeg"
+  },
+  {
     "id": "https://mp.weixin.qq.com/s/jUoFG49_M-wTsPU7vpdC6g",
     "title": "AI已经开始“干活”了：而我们还在研究怎么问它问题",
     "excerpt": "AI已经开始“干活”了：而我们还在研究怎么问它问题",

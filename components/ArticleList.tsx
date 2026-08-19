@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { Article } from "@/data/articles";
 
@@ -10,6 +10,7 @@ interface ArticleListProps {
 }
 
 const PREVIEW_COUNT = 6;
+const PLACEHOLDER_FULL = "搜索标题、内容…";
 
 const COVER_THEMES = [
   {
@@ -41,6 +42,63 @@ const COVER_THEMES = [
     ink: "text-[#0b3a6a]",
   },
 ] as const;
+
+function SearchIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="2.4" />
+      <path
+        d="M16.2 16.2 20.5 20.5"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function useTypewriterPlaceholder(text: string, enabled: boolean) {
+  const [display, setDisplay] = useState("");
+
+  useEffect(() => {
+    if (!enabled) {
+      setDisplay("");
+      return;
+    }
+
+    let index = 0;
+    let deleting = false;
+    let timer: ReturnType<typeof setTimeout>;
+
+    const tick = () => {
+      if (!deleting) {
+        index += 1;
+        setDisplay(text.slice(0, index));
+        if (index >= text.length) {
+          deleting = true;
+          timer = setTimeout(tick, 1600);
+          return;
+        }
+        timer = setTimeout(tick, 110);
+        return;
+      }
+
+      index -= 1;
+      setDisplay(text.slice(0, Math.max(index, 0)));
+      if (index <= 0) {
+        deleting = false;
+        timer = setTimeout(tick, 500);
+        return;
+      }
+      timer = setTimeout(tick, 55);
+    };
+
+    timer = setTimeout(tick, 400);
+    return () => clearTimeout(timer);
+  }, [text, enabled]);
+
+  return display;
+}
 
 function ThemedCover({ index, label }: { index: number; label: string }) {
   const theme = COVER_THEMES[index % COVER_THEMES.length];
@@ -108,6 +166,9 @@ function ArticleRow({ article, index }: { article: Article; index: number }) {
 export default function ArticleList({ articles }: ArticleListProps) {
   const [query, setQuery] = useState("");
   const [expanded, setExpanded] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const showTypewriter = !query && !focused;
+  const typedPlaceholder = useTypewriterPlaceholder(PLACEHOLDER_FULL, showTypewriter);
 
   const keyword = query.trim().toLowerCase();
   const filtered = keyword
@@ -126,19 +187,30 @@ export default function ArticleList({ articles }: ArticleListProps) {
         <h1 className="font-cn text-3xl font-black text-white sm:text-4xl">摸爬滚打的分享</h1>
 
         <label className="article-search mt-6 flex items-center gap-3 rounded-full border-2 border-white/70 bg-white/85 px-4 py-2.5 shadow-[3px_3px_0_rgba(11,58,106,0.25)] backdrop-blur-sm focus-within:border-[#f5d56c] focus-within:bg-white">
-          <span className="text-sm font-extrabold text-[#0b3a6a]" aria-hidden>
-            搜
+          <SearchIcon className="h-4 w-4 shrink-0 text-[#0b3a6a]" />
+          <span className="relative min-h-[1.25rem] w-full">
+            {showTypewriter && (
+              <span
+                className="pointer-events-none absolute inset-0 flex items-center text-sm font-semibold text-[#999]"
+                aria-hidden
+              >
+                {typedPlaceholder}
+                <span className="article-search-caret ml-0.5 inline-block h-[1em] w-[2px] bg-[#0b3a6a]" />
+              </span>
+            )}
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setExpanded(false);
+              }}
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+              aria-label="搜索标题、内容"
+              className="relative w-full bg-transparent text-sm font-semibold text-[#222] outline-none"
+            />
           </span>
-          <input
-            type="search"
-            value={query}
-            onChange={(event) => {
-              setQuery(event.target.value);
-              setExpanded(false);
-            }}
-            placeholder="搜索标题、内容…"
-            className="w-full bg-transparent text-sm font-semibold text-[#222] outline-none placeholder:text-[#999]"
-          />
           {query && (
             <button
               type="button"

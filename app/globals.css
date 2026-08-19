@@ -152,6 +152,10 @@
     margin: 0;
   }
 
+  .about-type-caret {
+    animation: article-caret-blink 1s steps(1, end) infinite;
+  }
+
   .id-pass-card {
     border: 3px solid #0b3a6a;
     border-radius: 20px;
@@ -186,6 +190,21 @@
 
   .id-card-pass-body {
     background: rgba(255, 255, 255, 0.22);
+  }
+
+  .article-search-caret {
+    animation: article-caret-blink 1s steps(1, end) infinite;
+  }
+}
+
+@keyframes article-caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
   }
 }
 
