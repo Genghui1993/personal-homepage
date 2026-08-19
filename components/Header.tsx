@@ -52,7 +52,7 @@ function Brand() {
       <span className="relative h-9 w-9 overflow-hidden rounded-[10px] bg-white shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)] sm:h-10 sm:w-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/game/girl.png"
+          src="/game/girl.png?v=2"
           alt=""
           className="absolute inset-x-0 top-[-6%] h-[220%] w-full object-cover object-top [image-rendering:pixelated]"
         />

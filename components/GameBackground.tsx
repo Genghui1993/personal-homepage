@@ -1,5 +1,7 @@
 import PixelImg from "@/components/PixelImg";
 
+const GIRL_SRC = "/game/girl.png?v=2";
+
 const CLOUDS = [
   "absolute left-[5%] top-[8%] h-16 w-auto animate-[cloud-drift_22s_ease-in-out_infinite] sm:h-[88px]",
   "absolute left-[28%] top-[5%] h-12 w-auto animate-[cloud-drift_26s_ease-in-out_infinite] sm:h-16",
@@ -31,7 +33,7 @@ export default function GameBackground() {
 
       <div className="absolute bottom-[86px] right-[10%] z-[1] flex items-end gap-1 sm:right-[14%] md:right-[16%]">
         <PixelImg
-          src="/game/girl.png"
+          src={GIRL_SRC}
           className="sprite-float h-[196px] w-auto sm:h-[232px]"
         />
         <PixelImg src="/game/bunny.png" className="h-[70px] w-auto sm:h-[84px]" />
