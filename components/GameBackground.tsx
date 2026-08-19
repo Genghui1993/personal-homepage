@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import PixelImg from "@/components/PixelImg";
 
 const GIRL_SRC = "/game/girl.png?v=2";
@@ -19,6 +22,9 @@ const TREES = [
 ] as const;
 
 export default function GameBackground() {
+  const pathname = usePathname();
+  const isAbout = pathname === "/about";
+
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#58b6ff]">
       {CLOUDS.map((className) => (
@@ -31,13 +37,26 @@ export default function GameBackground() {
 
       <PixelImg src="/game/turtle.png" className="absolute bottom-[88px] left-[22%] h-10 w-auto sm:h-12" />
 
-      <div className="absolute bottom-[86px] right-[10%] z-[1] flex items-end gap-1 sm:right-[14%] md:right-[16%]">
-        <PixelImg
-          src={GIRL_SRC}
-          className="sprite-float h-[196px] w-auto sm:h-[232px]"
-        />
-        <PixelImg src="/game/bunny.png" className="h-[70px] w-auto sm:h-[84px]" />
-      </div>
+      {isAbout ? (
+        <>
+          <PixelImg
+            src="/game/balloon.png"
+            className="sprite-float-balloon absolute bottom-[100px] left-[4%] z-[1] h-[88px] w-auto opacity-90 sm:left-[7%] sm:h-[110px]"
+          />
+          <div className="absolute bottom-[86px] right-[6%] z-[1] flex items-end gap-1 sm:right-[10%]">
+            <PixelImg src="/game/bunny.png" className="h-[56px] w-auto sm:h-[68px]" />
+            <PixelImg
+              src="/game/bunny.png"
+              className="mb-0.5 hidden h-[46px] w-auto scale-x-[-1] sm:block"
+            />
+          </div>
+        </>
+      ) : (
+        <div className="absolute bottom-[86px] right-[10%] z-[1] flex items-end gap-1 sm:right-[14%] md:right-[16%]">
+          <PixelImg src={GIRL_SRC} className="sprite-float h-[196px] w-auto sm:h-[232px]" />
+          <PixelImg src="/game/bunny.png" className="h-[70px] w-auto sm:h-[84px]" />
+        </div>
+      )}
 
       <div className="absolute inset-x-0 bottom-0 flex h-[92px] items-end overflow-hidden bg-[#8ed63a]">
         {[0, 1, 2].map((index) => (

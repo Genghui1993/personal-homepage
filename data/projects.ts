@@ -10,7 +10,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "1",
-    name: "AI进化空间",
+    name: "小耿不是小狄",
     status: "in-progress",
     techStack: ["Next.js", "TypeScript", "Framer Motion"],
     progress: 35,

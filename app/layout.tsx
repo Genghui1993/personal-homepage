@@ -26,7 +26,7 @@ const xiaoWei = ZCOOL_XiaoWei({
 });
 
 export const metadata: Metadata = {
-  title: "AI进化空间 | 小耿不是小狄",
+  title: "小耿不是小狄",
   description: "展示个人 AI 能力成长过程的数字空间",
 };
 

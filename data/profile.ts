@@ -15,6 +15,7 @@ export interface Task {
 export interface Profile {
   name: string;
   role: string;
+  birthday: string;
   level: number;
   title: string;
   xp: number;
@@ -25,7 +26,8 @@ export interface Profile {
 
 export const profile: Profile = {
   name: "小耿不是小狄",
-  role: "AI Builder",
+  role: "前端开发",
+  birthday: "19990508",
   level: 1,
   title: "AI探索者",
   xp: 1280,

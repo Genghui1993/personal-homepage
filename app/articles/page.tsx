@@ -12,7 +12,14 @@ async function getArticles() {
     try {
       rssArticles = await fetchWechatArticles(rssUrl);
     } catch (error) {
-      console.warn("[articles] RSS fetch failed, using snapshot:", error);
+      const reason =
+        error instanceof Error
+          ? error.cause instanceof Error
+            ? error.cause.message
+            : error.message
+          : String(error);
+      // 本地 WeWe RSS 未启动时属预期情况，用 data/articles.ts 保底列表即可
+      console.warn(`[articles] RSS unavailable (${reason}) — using snapshot`);
     }
   }
 
