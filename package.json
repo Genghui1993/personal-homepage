@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=20.0.0"
+    "node": "20.x"
   },
   "scripts": {
-    "dev": "bash scripts/with-node.sh next dev --turbo -H 127.0.0.1 -p 3000",
-    "dev:clean": "rm -rf .next && bash scripts/with-node.sh next dev --turbo -H 127.0.0.1 -p 3000",
-    "dev:webpack": "bash scripts/with-node.sh next dev -H 127.0.0.1 -p 3000",
-    "build": "bash scripts/with-node.sh next build",
-    "start": "bash scripts/with-node.sh next start",
-    "lint": "bash scripts/with-node.sh next lint",
-    "sync:articles": "bash scripts/with-node.sh node scripts/sync-articles.js"
+    "dev": "next dev --turbo -H 127.0.0.1 -p 3000",
+    "dev:clean": "rm -rf .next && next dev --turbo -H 127.0.0.1 -p 3000",
+    "dev:webpack": "next dev -H 127.0.0.1 -p 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "sync:articles": "node scripts/sync-articles.js"
   },
   "dependencies": {
     "framer-motion": "^11.15.0",
