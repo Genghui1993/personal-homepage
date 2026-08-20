@@ -2,18 +2,25 @@ export interface Project {
   id: string;
   name: string;
   status: "completed" | "in-progress" | "planned";
-  techStack: string[];
   progress: number;
   description: string;
+  url?: string;
 }
 
 export const projects: Project[] = [
   {
-    id: "1",
-    name: "小耿不是小狄",
+    id: "internet-archive",
+    name: "互联网考古馆",
+    status: "completed",
+    progress: 100,
+    description: "收藏那些正在消失的互联网。坐回 2005 年的那台电脑前，体验拨号上网、博客与即时通讯的时代。",
+    url: "https://archive.xggo.online",
+  },
+  {
+    id: "brainstorming",
+    name: "头脑风暴中",
     status: "in-progress",
-    techStack: ["Next.js", "TypeScript", "Framer Motion"],
-    progress: 35,
-    description: "个人 AI 能力成长数字空间",
+    progress: 0,
+    description: "一些有趣的想法正在酝酿，敬请期待。",
   },
 ];

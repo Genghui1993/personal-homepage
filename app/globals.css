@@ -156,6 +156,38 @@
     animation: article-caret-blink 1s steps(1, end) infinite;
   }
 
+  .project-lab-kicker {
+    margin-top: 1rem;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 2px 2px 0 #0b3a6a;
+  }
+
+  .project-lab-title {
+    margin-top: 0.35rem;
+    font-size: clamp(2.75rem, 8vw, 4.25rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: #f5d56c;
+    text-shadow:
+      4px 4px 0 #0b3a6a,
+      -1px -1px 0 #0b3a6a,
+      1px -1px 0 #0b3a6a,
+      -1px 1px 0 #0b3a6a;
+  }
+
+  .project-lab-scan {
+    display: block;
+    margin-top: 0.65rem;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #f5d56c 0%, #fff 50%, #58b6ff 100%);
+    box-shadow: 0 0 12px rgba(245, 213, 108, 0.45);
+  }
+
   .id-pass-card {
     border: 3px solid #0b3a6a;
     border-radius: 20px;
